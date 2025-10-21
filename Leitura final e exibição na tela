@@ -1,0 +1,20 @@
+def exibir_resultados():
+    print("\nLISTA FINAL DE ALUNOS\n")
+    try:
+        with open("aprovados.txt", "r") as arquivo:
+            print("Aprovados:")
+            for linha in arquivo:
+                nome, media, status = linha.strip().split(";")
+                print(f" - {nome} | Média: {media} | {status}")
+    except FileNotFoundError:
+        print("Nenhum aprovado.")
+    print("\nReprovados:")
+    try:
+        with open("reprovados.txt", "r") as arquivo:
+            for linha in arquivo:
+                nome, media, status = linha.strip().split(";")
+                print(f" - {nome} | Média: {media} | {status}")
+    except FileNotFoundError:
+        print("Nenhum reprovado.")
+if __name__ == "__main__":
+    exibir_resultados()
