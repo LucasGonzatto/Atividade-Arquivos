@@ -1,0 +1,24 @@
+def classificar_alunos():
+    with open("notas.txt", "r") as arquivo:
+        linhas = arquivo.readlines()
+    aprovados = []
+    exame = []
+    reprovados = []
+    for linha in linhas:
+        nome, n1, n2, n3 = linha.strip().split(";")
+        media = (float(n1) + float(n2) + float(n3)) / 3
+        if media >= 7:
+            aprovados.append(f"{nome};{media:.2f};Aprovado\n")
+        elif media >= 5:
+            exame.append(f"{nome};{media:.2f};Exame\n")
+        else:
+            reprovados.append(f"{nome};{media:.2f};Reprovado\n")
+    with open("aprovados.txt", "w") as arq_ap:
+        arq_ap.writelines(aprovados)
+    with open("exame.txt", "w") as arq_ex:
+        arq_ex.writelines(exame)
+    with open("reprovados.txt", "w") as arq_rep:
+        arq_rep.writelines(reprovados)
+    print(" Alunos classificados com sucesso!")
+if __name__ == "__main__":
+    classificar_alunos()
