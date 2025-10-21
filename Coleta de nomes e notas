@@ -1,0 +1,16 @@
+def coletar_dados():
+    with open("notas.txt", "w") as arquivo:
+        while True:
+            nome = input("Nome do aluno (ou 'sair' para encerrar): ")
+            if nome.lower() == "sair":
+                break
+            
+            nota1 = float(input("Nota 1: "))
+            nota2 = float(input("Nota 2: "))
+            nota3 = float(input("Nota 3: "))
+
+            # grava as informações no arquivo
+            arquivo.write(f"{nome};{nota1};{nota2};{nota3}\n")
+    print("Dados salvos em notas.txt")
+if __name__ == "__main__":
+    coletar_dados()
