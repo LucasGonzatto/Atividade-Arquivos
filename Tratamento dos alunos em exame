@@ -1,0 +1,25 @@
+def exame_final():
+    try:
+        with open("exame.txt", "r") as arquivo:
+            linhas = arquivo.readlines()
+    except FileNotFoundError:
+        print("Nenhum aluno em exame.")
+        return
+    aprovados = []
+    reprovados = []
+    for linha in linhas:
+        nome, media_antiga, _ = linha.strip().split(";")
+        media_antiga = float(media_antiga)
+        nota_exame = float(input(f"Digite a nota do exame de {nome}: "))
+        media_final = (media_antiga + nota_exame) / 2
+        if media_final >= 5:
+            aprovados.append(f"{nome};{media_final:.2f};Aprovado após exame\n")
+        else:
+            reprovados.append(f"{nome};{media_final:.2f};Reprovado após exame\n")
+    with open("aprovados.txt", "a") as arq_ap:
+        arq_ap.writelines(aprovados)
+    with open("reprovados.txt", "a") as arq_rep:
+        arq_rep.writelines(reprovados)
+    print(" Situação dos alunos em exame atualizada!")
+if __name__ == "__main__":
+    exame_final()
